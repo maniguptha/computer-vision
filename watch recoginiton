@@ -1,0 +1,11 @@
+import cv2
+import matplotlib.pyplot as plt
+
+watch_cascade = cv2.CascadeClassifier('haarcascade_watch.xml')
+img = cv2.imread('watch.jpg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+watches = watch_cascade.detectMultiScale(gray, 1.1, 4)
+for (x, y, w, h) in watches:
+    cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.show()
